@@ -1,0 +1,197 @@
+﻿@model List<ControlAsignacionMaquinariaBLL.DB.Asi_Maquinaria>
+@{
+    ViewBag.Title = "Maquinaria";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section css{
+    <link href="~/Content/assets/advanced-datatable/media/css/demo_page.css" rel="stylesheet" />
+    <link href="~/Content/assets/advanced-datatable/media/css/demo_table.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/assets/data-tables/DT_bootstrap.css" />
+    <link href="~/Content/assets/select2/css/select2.min.css" rel="stylesheet" />
+    <link href="~/Content/css/custom.css" rel="stylesheet" />
+}
+@section scripts{
+    <script type="text/javascript" language="javascript" src="~/Content/assets/advanced-datatable/media/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="~/Content/assets/data-tables/DT_bootstrap.js"></script>
+    <script src="~/Content/js/dynamic_table_init.js"></script>
+    <script src="~/Content/assets/select2/js/select2.min.js"></script>
+    <script src="~/Scripts/Maquinaria.js"></script>
+}
+
+<section id="main-content" style="background-color:white">
+    <section class="wrapper site-min-height">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <button style="background: none;border: none;" data-toggle="modal" data-target="#modalNuevoMaquinaria">
+                                </button>
+                                <div class="row">
+                                    <label class="col-10 control-label" style="color:#3768FB;font-size:22px;font-weight:bold;margin-bottom:0" data-toggle="modal" data-target="#modalNuevoMaquinaria">Maquinaria</label>
+                                    <label class="col-10 control-label" style="color: #7B868C; margin-bottom:0" data-toggle="modal" data-target="#modalNuevoMaquinaria">
+                                        Nuevo Registro
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <section class="card">
+                    <div class="card-body">
+                        <div class="adv-table" style="overflow:auto">
+                            <table class="tablaCustom" id="tblEmpleado">
+                                <thead>
+                                    <tr>
+                                        <th>Serie</th>
+                                        <th>Descripción</th>
+                                        <th>Estado</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td> @item.maqSerie</td>
+                                            <td> @item.maqDescripcion</td>
+                                            @if (item.maqEstado == true)
+                                            {
+                                                <td>Activo</td>
+                                                <td align="center" width="200">
+                                                    <button data-idMaquinaria="@item.maqId" id="" class="btn btn-addPbp btn-info btn-sm btnSeleccionEditar" data-toggle="modal" data-target="#modalEditarMaquinaria"><i class="fa fa-edit"></i></button>
+                                                    <button data-idMaquinaria="@item.maqId" id="" class="btn btn-addPbp btn-info btn-sm btnSeleccionEliminar" data-toggle="modal" data-target="#modalEliminarMaquinaria"><i class="fa fa-trash-o"></i></button>
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td>Inactivo</td>
+                                                <td align="center" width="200">
+                                                    <button data-idMaquinaria="@item.maqId" id="" class="btn btn-addPbp btn-info btn-sm btnSeleccionEditar" data-toggle="modal" data-target="#modalEditarMaquinaria"><i class="fa fa-edit"></i></button>
+                                                </td>
+                                            }
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Modal Nuevo Maquinaria-->
+        <div class="modal fade" id="modalNuevoMaquinaria" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="overflow-y: scroll;">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #3768FB">
+                        <h5 class="modal-title" id="exampleModalCenterTitle" style="color: white;font-weight:bold">Nuevo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCerrarModalNuevo">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="background-color: #E8E8F0">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="col-sm-10 control-label">Serie:</label>
+                                    <input type="text" class="form-control" id="txtSerieNuevo" required maxlength="140">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="col-sm-10 control-label">Descripción:</label>
+                                    <input type="text" class="form-control" id="txtDescripcionNuevo" required maxlength="240">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-addPbp" id="btnNuevoMaquinariaModal">Aceptar</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- modal -->
+        <!-- Modal Editar Maquinaria-->
+        <div class="modal fade" id="modalEditarMaquinaria" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="overflow-y: scroll;">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #3768FB">
+                        <h5 class="modal-title" id="exampleModalCenterTitle" style="color: white;font-weight:bold">Editar</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCerrarModalEditar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="background-color: #E8E8F0">
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" id="IdMaquinariaEditar" readonly>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="col-sm-10 control-label">Serie:</label>
+                                    <input type="text" class="form-control" id="txtSerieEditar" required maxlength="140">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="col-sm-10 control-label">Descripción:</label>
+                                    <input type="text" class="form-control" id="txtDescripcionEditar" required maxlength="240">
+                                </div>
+                            </div>
+                            <div class="row" id="divEstado">
+                                <div class="col-6">
+                                    <label class="col-sm-10 control-label">Estado:</label>
+                                    <select class="form-control" id="slcEstadoEditar">
+                                        <option value="false">Inactivo</option>
+                                        <option value="true">Activo</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-addPbp" id="btnEditarMaquinariaModal">Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal -->
+        <!-- Modal Eliminar Maquinaria-->
+        <div class="modal fade" id="modalEliminarMaquinaria" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="overflow-y: scroll;">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #3768FB">
+                        <h5 class="modal-title" id="exampleModalCenterTitle" style="color: white;font-weight:bold">Eliminar</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCerrarModalEliminar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="background-color: #E8E8F0">
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" id="IdMaquinariaEliminar" readonly>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="col-sm-10 control-label">¿Está seguro de eliminar el registro?</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-addPbp" id="btnEliminarMaquinariaModal">Aceptar</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- modal -->
+    </section>
+</section>

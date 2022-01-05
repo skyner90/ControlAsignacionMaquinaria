@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Asignaciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section css{
+    <link href="~/Content/assets/advanced-datatable/media/css/demo_page.css" rel="stylesheet" />
+    <link href="~/Content/assets/advanced-datatable/media/css/demo_table.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/assets/data-tables/DT_bootstrap.css" />
+    <link href="~/Content/assets/select2/css/select2.min.css" rel="stylesheet" />
+    <link href="~/Content/css/custom.css" rel="stylesheet" />
+}
+@section scripts{
+    <script type="text/javascript" language="javascript" src="~/Content/assets/advanced-datatable/media/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="~/Content/assets/data-tables/DT_bootstrap.js"></script>
+    <script src="~/Content/js/dynamic_table_init.js"></script>
+    <script src="~/Content/assets/select2/js/select2.min.js"></script>
+    <script src="~/Scripts/Asignacion.js"></script>
+}
+
+<section id="main-content" style="background-color:white">
+    <section class="wrapper site-min-height">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+
+                                <div class="row">
+                                    <label class="col-10 control-label" style="color:#3768FB;font-size:22px;font-weight:bold;margin-bottom:0" data-toggle="modal" data-target="#">Asignación</label>
+                                    <label class="col-10 control-label" style="color: #7B868C; margin-bottom:0" data-toggle="modal" data-target="#">
+                                        Asignación de maquinaria a los Empleados
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <label class="col-sm-10 control-label">Seleccione el Empleado:</label>
+                <select class="form-control" id="slcEmpleado"></select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <section class="card">
+                    <div class="card-body">
+                        <div class="adv-table" style="overflow:auto">
+                            <table class="tablaCustom" id="tblAsignacion">
+                                
+                            </table>
+                        </div>
+                    </div>
+
+                </section>
+                <button type="submit" class="btn btn-info" id="btnGuardarAsignacion">Guardar</button>
+            </div>
+        </div>
+                
+    </section>
+</section>

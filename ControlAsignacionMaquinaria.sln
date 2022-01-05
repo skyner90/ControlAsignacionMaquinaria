@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlAsignacionMaquinaria", "ControlAsignacionMaquinaria\ControlAsignacionMaquinaria.csproj", "{750411DE-66FE-411C-8148-A688C2612275}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlAsignacionMaquinariaBLL", "ControlAsignacionMaquinariaBLL\ControlAsignacionMaquinariaBLL.csproj", "{88587A98-AE93-4D71-B17D-23DF53DF3507}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{750411DE-66FE-411C-8148-A688C2612275}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{750411DE-66FE-411C-8148-A688C2612275}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{750411DE-66FE-411C-8148-A688C2612275}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{750411DE-66FE-411C-8148-A688C2612275}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88587A98-AE93-4D71-B17D-23DF53DF3507}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88587A98-AE93-4D71-B17D-23DF53DF3507}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88587A98-AE93-4D71-B17D-23DF53DF3507}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88587A98-AE93-4D71-B17D-23DF53DF3507}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7E3C3AE8-BD60-4089-94D4-DE793F49D3CB}
+	EndGlobalSection
+EndGlobal

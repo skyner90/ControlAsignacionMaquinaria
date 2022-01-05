@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AsignacionMaquinariaDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Asi_Empleado">
+          <Key>
+            <PropertyRef Name="empId" />
+          </Key>
+          <Property Name="empId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="empNombre" Type="varchar" MaxLength="250" />
+          <Property Name="empCargo" Type="varchar" MaxLength="250" />
+          <Property Name="empCedula" Type="varchar" MaxLength="250" />
+          <Property Name="empArea" Type="varchar" MaxLength="250" />
+          <Property Name="empFechaCreacion" Type="datetime2" Precision="7" />
+          <Property Name="empEstado" Type="bit" />
+        </EntityType>
+        <EntityType Name="Asi_Maquinaria">
+          <Key>
+            <PropertyRef Name="maqId" />
+          </Key>
+          <Property Name="maqId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="maqSerie" Type="varchar" MaxLength="150" />
+          <Property Name="maqDescripcion" Type="varchar" MaxLength="500" />
+          <Property Name="maqEstado" Type="bit" />
+          <Property Name="maqFechaCreacion" Type="datetime2" Precision="7" />
+          <Property Name="empId" Type="int" />
+          <Property Name="maqDisponible" Type="bit" />
+        </EntityType>
+        <Association Name="FK_Asi_Maquinaria_Asi_Empleado">
+          <End Role="Asi_Empleado" Type="Self.Asi_Empleado" Multiplicity="0..1" />
+          <End Role="Asi_Maquinaria" Type="Self.Asi_Maquinaria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asi_Empleado">
+              <PropertyRef Name="empId" />
+            </Principal>
+            <Dependent Role="Asi_Maquinaria">
+              <PropertyRef Name="empId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AsignacionMaquinariaDBModelStoreContainer">
+          <EntitySet Name="Asi_Empleado" EntityType="Self.Asi_Empleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Asi_Maquinaria" EntityType="Self.Asi_Maquinaria" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Asi_Maquinaria_Asi_Empleado" Association="Self.FK_Asi_Maquinaria_Asi_Empleado">
+            <End Role="Asi_Empleado" EntitySet="Asi_Empleado" />
+            <End Role="Asi_Maquinaria" EntitySet="Asi_Maquinaria" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AsignacionMaquinariaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AsignacionMaquinariaDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Asi_Empleado" EntityType="AsignacionMaquinariaDBModel.Asi_Empleado" />
+          <EntitySet Name="Asi_Maquinaria" EntityType="AsignacionMaquinariaDBModel.Asi_Maquinaria" />
+          <AssociationSet Name="FK_Asi_Maquinaria_Asi_Empleado" Association="AsignacionMaquinariaDBModel.FK_Asi_Maquinaria_Asi_Empleado">
+            <End Role="Asi_Empleado" EntitySet="Asi_Empleado" />
+            <End Role="Asi_Maquinaria" EntitySet="Asi_Maquinaria" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Asi_Empleado">
+          <Key>
+            <PropertyRef Name="empId" />
+          </Key>
+          <Property Name="empId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="empNombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="empCargo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="empCedula" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="empArea" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="empFechaCreacion" Type="DateTime" Precision="7" />
+          <Property Name="empEstado" Type="Boolean" />
+          <NavigationProperty Name="Asi_Maquinaria" Relationship="AsignacionMaquinariaDBModel.FK_Asi_Maquinaria_Asi_Empleado" FromRole="Asi_Empleado" ToRole="Asi_Maquinaria" />
+        </EntityType>
+        <EntityType Name="Asi_Maquinaria">
+          <Key>
+            <PropertyRef Name="maqId" />
+          </Key>
+          <Property Name="maqId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="maqSerie" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="maqDescripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="maqEstado" Type="Boolean" />
+          <Property Name="maqFechaCreacion" Type="DateTime" Precision="7" />
+          <Property Name="empId" Type="Int32" />
+          <Property Name="maqDisponible" Type="Boolean" />
+          <NavigationProperty Name="Asi_Empleado" Relationship="AsignacionMaquinariaDBModel.FK_Asi_Maquinaria_Asi_Empleado" FromRole="Asi_Maquinaria" ToRole="Asi_Empleado" />
+        </EntityType>
+        <Association Name="FK_Asi_Maquinaria_Asi_Empleado">
+          <End Type="AsignacionMaquinariaDBModel.Asi_Empleado" Role="Asi_Empleado" Multiplicity="0..1" />
+          <End Type="AsignacionMaquinariaDBModel.Asi_Maquinaria" Role="Asi_Maquinaria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asi_Empleado">
+              <PropertyRef Name="empId" />
+            </Principal>
+            <Dependent Role="Asi_Maquinaria">
+              <PropertyRef Name="empId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AsignacionMaquinariaDBModelStoreContainer" CdmEntityContainer="AsignacionMaquinariaDBEntities">
+          <EntitySetMapping Name="Asi_Empleado">
+            <EntityTypeMapping TypeName="AsignacionMaquinariaDBModel.Asi_Empleado">
+              <MappingFragment StoreEntitySet="Asi_Empleado">
+                <ScalarProperty Name="empEstado" ColumnName="empEstado" />
+                <ScalarProperty Name="empFechaCreacion" ColumnName="empFechaCreacion" />
+                <ScalarProperty Name="empArea" ColumnName="empArea" />
+                <ScalarProperty Name="empCedula" ColumnName="empCedula" />
+                <ScalarProperty Name="empCargo" ColumnName="empCargo" />
+                <ScalarProperty Name="empNombre" ColumnName="empNombre" />
+                <ScalarProperty Name="empId" ColumnName="empId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Asi_Maquinaria">
+            <EntityTypeMapping TypeName="AsignacionMaquinariaDBModel.Asi_Maquinaria">
+              <MappingFragment StoreEntitySet="Asi_Maquinaria">
+                <ScalarProperty Name="maqDisponible" ColumnName="maqDisponible" />
+                <ScalarProperty Name="empId" ColumnName="empId" />
+                <ScalarProperty Name="maqFechaCreacion" ColumnName="maqFechaCreacion" />
+                <ScalarProperty Name="maqEstado" ColumnName="maqEstado" />
+                <ScalarProperty Name="maqDescripcion" ColumnName="maqDescripcion" />
+                <ScalarProperty Name="maqSerie" ColumnName="maqSerie" />
+                <ScalarProperty Name="maqId" ColumnName="maqId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
